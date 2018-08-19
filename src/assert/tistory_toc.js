@@ -15,9 +15,9 @@ var TOC = (function ($) {
         // toc 클래스를 갖는 엘리먼트 획득
         var tocs = $('.toc');
         
-        // toc 수만큼 게시물이 존재하므로 각 게시물에 해당되는 h1 ~ h4 수집
+        // toc 수만큼 게시물이 존재하므로 각 게시물에 해당되는 h1 ~ h3 수집
         for (var i=0; i<tocs.length; i++) {
-            var contexts = $(tocs[i]).parent().find('h1, h2, h3, h4');
+            var contexts = $(tocs[i]).parent().find('h1, h2, h3');
 
             // h1 ~ h4가 없는경우 처리하지 않음.
             if (contexts.length === 0) {
@@ -47,8 +47,7 @@ var TOC = (function ($) {
             var hCount = {
                 h1: 0,
                 h2: 0,
-                h3: 0,
-                h4: 0
+                h3: 0
             };
 
             for (var j=0; j<articles[i].contexts.length; j++) {
@@ -65,9 +64,6 @@ var TOC = (function ($) {
                         break;
                     case 'h2':
                         hCount.h3 = 0;
-                        hCount.h4 = 0;
-                        break;
-                    case 'h3':
                         hCount.h4 = 0;
                         break;
                 }
@@ -88,7 +84,7 @@ var TOC = (function ($) {
         }
     }
 
-    function generateOrder(tagName, h1Count, h2Count, h3Count, h4Count) {
+    function generateOrder(tagName, h1Count, h2Count, h3Count) {
         var order = '';
 
         switch(tagName.toLowerCase()) {
@@ -102,10 +98,6 @@ var TOC = (function ($) {
 
             case 'h3':
                 order = h1Count + "." + h2Count + "." + h3Count;
-                break;
-
-            case 'h4':
-                order = h1Count + "." + h2Count + "." + h3Count + "." + h4Count;
                 break;
         }
 
