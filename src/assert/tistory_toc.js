@@ -117,7 +117,3 @@ var TOC = (function ($) {
     };
 })(jQuery);
 
-$(document).ready(function () {
-    TOC.create();
-});
-
